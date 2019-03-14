@@ -95,7 +95,7 @@ server:
   error: 
     include-exception: true
   tomcat: 
-    basedir: ./tmp
+    basedir: ${TOMCAT_BASE}
     background-processor-delay: 30
     additional-tld-skip-patterns: 
     port-header: X-Forwarded-Port
@@ -109,7 +109,7 @@ server:
       buffered: true
       directory: ./log
       file-date-format: .yyyy-MM-dd
-      pattern: '%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i" %D'
+      pattern: '%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i" %D ms'
       prefix: access_log
       rename-on-rotate: false
       request-attributes-enabled: false
