@@ -48,7 +48,7 @@ public class Swagger2Configuration implements WebFluxConfigurer {
 	 * @return ApiInfo
 	 */
     private ApiInfo apiInfo() {
-    	Contact contact = new Contact("CaoChaofeng", "url", "daniel.cao@beyonds.com");
+    	Contact contact = new Contact("Daniel.Cao", "https://www.jianshu.com/u/36d8b0841835", "19070443@qq.com");
         return new ApiInfoBuilder()
                 .title("@__scope__@-@__template__@相关RESTful APIs")
                 .description("@__scope__@-@__template__@相关API调用方式及参数详解")
