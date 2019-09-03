@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.beyonds.phoenix.mountain.core.common.lang.WdRuntimeException;
-import com.beyonds.phoenix.mountain.core.common.result.ReturnResult;
 import com.@__company__@.@__scope__@.@__template__@.model.enums.ResultEnum;
+import com.github.biticcf.mountain.core.common.lang.WdRuntimeException;
+import com.github.biticcf.mountain.core.common.result.ReturnResult;
 
 import reactor.core.publisher.Mono;
 

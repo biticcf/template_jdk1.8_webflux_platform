@@ -26,7 +26,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
-import com.beyonds.phoenix.mountain.core.common.service.StringDateConverter;
+import com.github.biticcf.mountain.core.common.service.StringDateConverter;
 import com.@__company__@.@__scope__@.@__template__@.web.controller.DefaultErrorHandler;
 
 /**

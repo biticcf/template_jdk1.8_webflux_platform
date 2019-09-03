@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.beyonds.phoenix.mountain.core.common.result.ReturnResult;
-import com.beyonds.phoenix.mountain.generator.annotation.FacadeConfig;
-import com.beyonds.phoenix.mountain.generator.annotation.MethodConfig;
 import com.@__company__@.@__scope__@.@__template__@.model.DeemModel;
+
+import com.github.biticcf.mountain.core.common.result.ReturnResult;
+import com.github.biticcf.mountain.generator.annotation.FacadeConfig;
+import com.github.biticcf.mountain.generator.annotation.MethodConfig;
+import reactor.core.publisher.Mono;
 
 /**
  * @Author: DanielCao
@@ -39,7 +41,7 @@ public interface DeemFacade {
 			        method = {RequestMethod.POST}, 
 			        produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	ReturnResult<DeemModel> insertDeem(@RequestBody @Valid DeemModel deemModel) throws Throwable;
+	Mono<ReturnResult<DeemModel>> insertDeem(@RequestBody @Valid DeemModel deemModel) throws Throwable;
 	
 	/**
 	 * 根据id查询对象
@@ -52,7 +54,7 @@ public interface DeemFacade {
 	        method = {RequestMethod.GET}, 
 	        produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	ReturnResult<DeemModel> queryById(
+	Mono<ReturnResult<DeemModel>> queryById(
 			@PathVariable(value = "id", required = true) Long id,
 			@RequestParam(value = "t", required = true) String t) throws Throwable;
 
@@ -67,7 +69,7 @@ public interface DeemFacade {
 	        method = {RequestMethod.GET}, 
 	        produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
-	ReturnResult<List<DeemModel>> queryList(
+	Mono<ReturnResult<List<DeemModel>>> queryList(
 			@RequestParam(value = "p", required = true) Integer p,
 			@RequestParam(value = "ps", required = true) Integer ps) throws Throwable;
 }

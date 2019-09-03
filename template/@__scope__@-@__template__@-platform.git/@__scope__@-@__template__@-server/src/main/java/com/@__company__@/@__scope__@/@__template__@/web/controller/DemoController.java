@@ -14,14 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.beyonds.phoenix.mountain.core.common.result.CallResult;
-import com.beyonds.phoenix.mountain.core.common.result.ReturnResult;
-import com.beyonds.phoenix.mountain.core.common.result.reactor.ResultExecutor;
-import com.beyonds.phoenix.mountain.core.common.result.reactor.ResultPaginationExecutor;
-import com.beyonds.phoenix.mountain.core.common.util.PaginationSupport;
 import com.@__company__@.@__scope__@.@__template__@.facade.DemoFacade;
 import com.@__company__@.@__scope__@.@__template__@.model.DemoModel;
 import com.@__company__@.@__scope__@.@__template__@.service.DemoService;
+import com.github.biticcf.mountain.core.common.result.CallResult;
+import com.github.biticcf.mountain.core.common.result.ReturnResult;
+import com.github.biticcf.mountain.core.common.result.reactor.ResultExecutor;
+import com.github.biticcf.mountain.core.common.result.reactor.ResultPaginationExecutor;
+import com.github.biticcf.mountain.core.common.util.PaginationSupport;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

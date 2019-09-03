@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.annotation.Validated;
 
-import com.beyonds.phoenix.mountain.core.common.model.WdBaseModel;
+import com.github.biticcf.mountain.core.common.model.WdBaseModel;
 
 /**
  * @author  DanielCao
