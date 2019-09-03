@@ -34,7 +34,7 @@
 		<!-- git.version.name -->
 		<git.version.name>RELEASE.VERSION</git.version.name>
 		
-		<java.version>10</java.version>
+		<java.version>8</java.version>
 		
 		<!-- 定义版本号 -->
 		<@__scope__@-@__template__@.version>1.0.0.@__version__@</@__scope__@-@__template__@.version>
@@ -42,7 +42,7 @@
 		<!-- 根据XML接口定义自动生成代码 -->
 		<skipGenerator>true</skipGenerator>
 		<!-- mountain 核心组件版本号 -->
-		<mountain.version>2.0.RELEASE</mountain.version>
+		<mountain.version>2.1.RELEASE</mountain.version>
 		
 		<!-- spring platform -->
 		<spring.boot.version>2.1.7.RELEASE</spring.boot.version>
