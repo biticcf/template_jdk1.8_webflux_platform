@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,7 @@ import org.springframework.util.StringUtils;
 
 import com.github.biticcf.mountain.core.common.service.WdServiceTemplate;
 import com.github.biticcf.mountain.core.common.service.WdServiceTemplateImpl;
+import com.github.biticcf.mountain.core.common.transaction.ManualManagedTransactionFactory;
 import com.github.pagehelper.PageInterceptor;
 import com.github.pagehelper.autoconfigure.PageHelperProperties;
 
@@ -189,6 +191,7 @@ public class DatasourceConfig {
 	 * +自定义事务管理工厂,用以管理事务的生命周期
 	 * @return TransactionFactory
 	 */
+	@ConditionalOnExpression("${spring.transaction.with-strict-flag:true}")
 	@Bean(name = "manualManagedTransactionFactory")
 	public ManualManagedTransactionFactory manualManagedTransactionFactory() {
 		return new ManualManagedTransactionFactory();
