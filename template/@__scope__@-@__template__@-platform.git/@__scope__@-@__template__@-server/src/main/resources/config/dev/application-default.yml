@@ -31,6 +31,19 @@ spring:
   datasource: 
     # 使用druid数据库连接池
     type: com.alibaba.druid.pool.DruidDataSource
+  task: 
+    execution: 
+      thread-name-prefix: task-
+      pool: 
+        queue-capacity: 10240
+        core-size: 32
+        max-size: 10240
+        allow-core-thread-timeout: true
+        keep-alive: 60s
+    scheduling: 
+      thread-name-prefix: scheduling-
+      pool: 
+        size: 4
 
 server: 
   port: ${SERVER_PORT:10000}
