@@ -94,6 +94,8 @@ server:
     mime-types: text/html,text/css,application/json
   error: 
     include-exception: true
+  http2: 
+    enabled: true
   tomcat: 
     basedir: ${TOMCAT_BASE}
     background-processor-delay: 30
