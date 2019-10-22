@@ -35,7 +35,7 @@ import com.@__company__@.@__scope__@.@__template__@.web.controller.DefaultErrorH
  * @Time:   下午3:35:28
  *
  */
-@Configuration
+@Configuration(proxyBeanMethods = false)
 @Import({WebFluxAutoConfiguration.class})
 @ComponentScan(
         value = "com.@__company__@.@__scope__@.@__template__@.web",
