@@ -8,9 +8,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.http.HttpProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
@@ -27,6 +29,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
 import com.github.biticcf.mountain.core.common.service.StringDateConverter;
+import com.github.biticcf.mountain.core.common.service.StringDecoderForHeaderConverter;
 import com.@__company__@.@__scope__@.@__template__@.web.controller.DefaultErrorHandler;
 
 /**
@@ -36,6 +39,7 @@ import com.@__company__@.@__scope__@.@__template__@.web.controller.DefaultErrorH
  *
  */
 @Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties({ HttpProperties.class })
 @Import({WebFluxAutoConfiguration.class})
 @ComponentScan(
         value = "com.@__company__@.@__scope__@.@__template__@.web",
@@ -78,5 +82,14 @@ public class WebFluxConfiguration implements WebFluxConfigurer {
     @Bean
     public StringDateConverter dateConverter() {
     	return new StringDateConverter();
+    }
+    
+    /**
+     * +对于header中的中文字进行解码
+     * @return 转换结果
+     */
+    @Bean
+    public StringDecoderForHeaderConverter stringHeaderConverter(HttpProperties httpProperties) {
+        return new StringDecoderForHeaderConverter(httpProperties.getEncoding().getCharset());
     }
 }
