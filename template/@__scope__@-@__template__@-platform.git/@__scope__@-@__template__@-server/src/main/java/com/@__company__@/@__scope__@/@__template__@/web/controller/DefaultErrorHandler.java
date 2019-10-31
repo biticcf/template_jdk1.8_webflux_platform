@@ -71,7 +71,7 @@ public class DefaultErrorHandler extends DefaultErrorWebExceptionHandler {
 	 * @return the error HTTP status
 	 */
 	@Override
-	protected HttpStatus getHttpStatus(Map<String, Object> errorAttributes) {
-		return HttpStatus.OK;
+	protected int getHttpStatus(Map<String, Object> errorAttributes) {
+		return HttpStatus.OK.value();
 	}
 }
