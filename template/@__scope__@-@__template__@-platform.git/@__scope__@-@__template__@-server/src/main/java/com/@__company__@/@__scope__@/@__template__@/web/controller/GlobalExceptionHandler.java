@@ -17,6 +17,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.@__company__@.@__scope__@.@__template__@.model.enums.ResultEnum;
@@ -201,6 +203,38 @@ public class GlobalExceptionHandler {
 	}
 	
 	/**
+	 * HttpClientErrorException异常处理
+	 * @param ex HttpClientErrorException
+	 * @return 返回结果
+	 */
+	@ExceptionHandler(value = HttpClientErrorException.class)
+	public ReturnResult<Object> httpClientErrorExceptionHandler(HttpClientErrorException ex) {
+		HttpStatus statusCode = ex.getStatusCode();
+		if (statusCode == null) {
+			statusCode = HttpStatus.BAD_REQUEST;
+		}
+		String errorMsg = "HttpClientErrorException Error!";
+		
+		return exceptionHandler(statusCode.value(), statusCode.getReasonPhrase() + "[" + ex.getMessage() + "]", ex, errorMsg);
+	}
+	
+	/**
+	 * HttpServerErrorException异常处理
+	 * @param ex HttpServerErrorException
+	 * @return 返回结果
+	 */
+	@ExceptionHandler(value = HttpServerErrorException.class)
+	public ReturnResult<Object> httpServerErrorExceptionHandler(HttpServerErrorException ex) {
+		HttpStatus statusCode = ex.getStatusCode();
+		if (statusCode == null) {
+			statusCode = HttpStatus.SERVICE_UNAVAILABLE;
+		}
+		String errorMsg = "HttpServerErrorException Error!";
+		
+		return exceptionHandler(statusCode.value(), statusCode.getReasonPhrase() + "[" + ex.getMessage() + "]", ex, errorMsg);
+	}
+	
+	/**
 	 * WdRuntimeException异常处理
 	 * @param ex WdRuntimeException
 	 * @return 返回结果
@@ -269,6 +303,22 @@ public class GlobalExceptionHandler {
 		writeErrorLog(errorMsg, th);
 		
 		ReturnResult<Object> result = new ReturnResult<Object>(resultEnu.getCode(), resultEnu.getDesc(), entry);
+		
+		return Mono.just(result);
+	}
+	/**
+	 * +统一异常处理
+	 * @param errorCode
+	 * @param errorMsg
+	 * @param th
+	 * @param entry
+	 * 
+	 * @return
+	 */
+	private Mono<ReturnResult<Object>> exceptionHandler(int errorCode, String errorMsg, Throwable th, Object entry) {
+		writeErrorLog(errorMsg, th);
+		
+		ReturnResult<Object> result = new ReturnResult<Object>(errorCode, errorMsg, entry);
 		
 		return Mono.just(result);
 	}
