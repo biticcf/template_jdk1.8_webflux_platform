@@ -134,6 +134,7 @@ server:
       request-attributes-enabled: false
       rotate: true
       suffix: .log
+      filted-enable: true
       filted-request-entries: 
        - uri: /
          method: HEAD
