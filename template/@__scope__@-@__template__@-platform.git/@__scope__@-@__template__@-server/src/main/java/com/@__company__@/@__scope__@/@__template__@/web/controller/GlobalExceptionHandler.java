@@ -208,7 +208,7 @@ public class GlobalExceptionHandler {
 	 * @return 返回结果
 	 */
 	@ExceptionHandler(value = HttpClientErrorException.class)
-	public ReturnResult<Object> httpClientErrorExceptionHandler(HttpClientErrorException ex) {
+	public Mono<ReturnResult<Object>> httpClientErrorExceptionHandler(HttpClientErrorException ex) {
 		HttpStatus statusCode = ex.getStatusCode();
 		if (statusCode == null) {
 			statusCode = HttpStatus.BAD_REQUEST;
@@ -224,7 +224,7 @@ public class GlobalExceptionHandler {
 	 * @return 返回结果
 	 */
 	@ExceptionHandler(value = HttpServerErrorException.class)
-	public ReturnResult<Object> httpServerErrorExceptionHandler(HttpServerErrorException ex) {
+	public Mono<ReturnResult<Object>> httpServerErrorExceptionHandler(HttpServerErrorException ex) {
 		HttpStatus statusCode = ex.getStatusCode();
 		if (statusCode == null) {
 			statusCode = HttpStatus.SERVICE_UNAVAILABLE;
