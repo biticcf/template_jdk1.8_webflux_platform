@@ -25,6 +25,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
@@ -91,5 +92,12 @@ public class WebFluxConfiguration implements WebFluxConfigurer {
     @Bean
     public StringDecoderForHeaderConverter stringHeaderConverter(HttpProperties httpProperties) {
         return new StringDecoderForHeaderConverter(httpProperties.getEncoding().getCharset());
+    }
+    
+    // +系统默认静态文件路径,优先级比config文件高
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                    .addResourceLocations("classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/");
     }
 }
